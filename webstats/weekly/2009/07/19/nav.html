@@ -1,0 +1,129 @@
+
+<html>
+<head>
+<title>Navigation Frame</title>
+</head>
+<body bgcolor="#FFFFFF">
+<!-- Now we provide links to individual reports, which we will generate on
+	separate pages. Be sure to target the other frame. -->
+<table>
+<tr>
+<th><a href="../../../../index.html" target="_top">Calendar of Reports</a></th>
+</tr>
+<th>Individual Reports</th>
+</tr>
+<tr>
+<th><a target="content" href="exec.html"><font size="2">Executive Summary and Totals</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="hours.html"><font size="2">Accesses by Hour</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="days.html"><font size="2">Accesses by Day</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="documents.html"><font size="2">Top Documents</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="entrypages.html"><font size="2">Top Entry Pages</font></a><br>
+<font size="1">Visits typically began at these pages.</font></th>
+</tr>
+<tr>
+<th><a target="content" href="exitpages.html"><font size="2">Top Exit Pages</font></a><br>
+<font size="1">Visits typically ended at these pages.</font></th>
+</tr>
+<tr>
+<th><a target="directories" href="directories/directories.html"><font size="2">Documents by Directory</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="types.html"><font size="2">File Types (Extensions)</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="authusers.html"><font size="2">Authorized Users</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="sites.html"><font size="2">Top Visitor Sites</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="domains.html"><font size="2">Top Visitor Domains</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="proxysites.html"><font size="2">Top Proxy Sites</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="proxydomains.html"><font size="2">Top Proxy Domains</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="useragents.html"><font size="2">Top Web Browsers</font></a>
+<br><font size="1">Also known as "user agents"</font></th>
+</tr>
+<tr>
+<th><a target="content" href="os.html"><font size="2">Top Operating Systems</font></a>
+<br><font size="1">Operating systems used by visitors</font></th>
+</tr>
+<tr>
+<th><a target="content" href="referrers.html"><font size="2">Top Referring URLs</font></a>
+<br><font size="1">External pages that link to this site</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="referringsites.html"><font size="2">Top Referring Sites</font></a>
+<br><font size="1">External sites that link to this site</font></a></th>
+</tr>
+<tr>
+<th><a target="referrersbydocument" href="referrersbydocument.html"><font size="2">Referring URLs by Document</font></a>
+<br><font size="1">External pages that link to this site, sorted by document referred to</font></a></th>
+</tr>
+<tr>
+<th><a target="referrersbynotfound" href="referrersbynotfound.html"><font size="2">Referring URLs by Document Not Found</font></a>
+<br><font size="1">External pages that link to pages that do not exist on this site, sorted by document referred to</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="searchkeywords.html"><font size="2">Top Search Keywords</font></a>
+<br><font size="1">Keywords used to reach this site via search engines,
+such as Altavista(tm) and Infoseek(tm)</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="searchservers.html"><font size="2">Top Search Servers</font></a>
+<br><font size="1">Search servers used to reach this site,
+such as as Altavista(tm) and Infoseek(tm)</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="searchkeywordsbyserver.html"><font size="2">Top Search Keywords by Server</font></a>
+<br><font size="1">Search keywords used to reach this site,
+indexed by search server of origin</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="notfound.html"><font size="2">Documents Not Found</font></a>
+<br><font size="1">Visitor requests for documents that do not exist
+on the web server</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="visits.html"><font size="2">Example Visits</font></a>
+<br><font size="1">Documents accessed by a sample of individual
+visitors to the web server</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="trails.html"><font size="2">Top Trails Followed</font></a>
+<br><font size="1">Most common routes from page to page followed
+by visitors to the web server</font></a></th>
+</tr>
+<tr>
+<th><a target="content" href="resultcodes.html"><font size="2">Accesses by Result Code</font></a>
+<br><font size="1">HTTP result codes, such as <code>200 OK</code> and <code>302 Moved Temporarily</code></font></a></th>
+</tr>
+
+</table>
+</body>
+</html>
+
+
+
+<!-- That's it for the main HTML page. Now we create individual HTML
+	pages for the individual reports. To keep this macro file
+	readable, we use 'include' to get the macros for these pages 
+	from separate files. 
+
+	Once we use the 'openfile' command, everything goes to that
+	separate file until we open a different file or use
+	'closefile' to return to the main document. -->
+

@@ -1,0 +1,346 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
+<base target="main">
+<title>Perspolis Films</title>
+<script LANGUAGE="JavaScript" FPTYPE="dynamicanimation">
+<!--
+  // If you want to change this script, you must also make the following
+  // changes so that FrontPage will not overwrite your new script.
+  // In the script tag, change type="dynamicanimation" to type="mydynamicanimation"
+  // In the first script statement, change "dynamicanimation" to "mydynamicanimation"
+  // Throughout the HTML content, change dynamicanimation= to mydynamicanimation=
+  // Change function dynAnimation to function mydynAnimation
+  // In the body tag, change onload="dynAnimation()" to onload="mydynAnimation()"
+  dynamicanimAttr = "dynamicanimation"
+  animateElements = new Array()
+  currentElement = 0
+  speed = 0
+  stepsZoom = 8
+  stepsWord = 8
+  stepsFly = 12
+  stepsSpiral = 16
+  steps = stepsZoom
+  step = 0
+  outString = ""
+  function dynAnimation()
+  {
+    var ms = navigator.appVersion.indexOf("MSIE")
+    ie4 = (ms>0) && (parseInt(navigator.appVersion.substring(ms+5, ms+6)) >= 4)
+    if(!ie4)
+    {
+      if((navigator.appName == "Netscape") &&
+         (parseInt(navigator.appVersion.substring(0, 1)) >= 4))
+      {
+        for (index=document.layers.length-1; index >= 0; index--)
+        {
+            layer=document.layers[index]
+            if (layer.left==10000)
+                layer.left=0
+        }
+      }
+      return
+    }
+    for (index=document.all.length-1; index >= document.body.sourceIndex; index--)
+    {
+      el = document.all[index]
+      animation = el.getAttribute(dynamicanimAttr, false)
+      if(null != animation)
+      {
+        if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord")
+        {
+          ih = el.innerHTML
+          outString = ""
+          i1 = 0
+          iend = ih.length
+          while(true)
+          {
+            i2 = startWord(ih, i1)
+            if(i2 == -1)
+              i2 = iend
+            outWord(ih, i1, i2, false, "")
+            if(i2 == iend)
+              break
+            i1 = i2
+            i2 = endWord(ih, i1)
+            if(i2 == -1)
+              i2 = iend
+            outWord(ih, i1, i2, true, animation)
+            if(i2 == iend)
+              break
+            i1 = i2
+          }
+          document.all[index].innerHTML = outString
+          document.all[index].style.posLeft = 0
+          document.all[index].setAttribute(dynamicanimAttr, null)
+        }
+        if(animation == "zoomIn" || animation == "zoomOut")
+        {
+          ih = el.innerHTML
+          outString = "<SPAN " + dynamicanimAttr + "=\"" + animation + "\" style=\"position: relative; left: 10000;\">"
+          outString += ih
+          outString += "</SPAN>"
+          document.all[index].innerHTML = outString
+          document.all[index].style.posLeft = 0
+          document.all[index].setAttribute(dynamicanimAttr, null)
+        }
+      }
+    }
+    i = 0
+    for (index=document.body.sourceIndex; index < document.all.length; index++)
+    {
+      el = document.all[index]
+      animation = el.getAttribute(dynamicanimAttr, false)
+      if (null != animation)
+      {
+        if(animation == "flyLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = 0
+        }
+        else if(animation == "flyRight")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = 0
+        }
+        else if(animation == "flyTop" || animation == "dropWord")
+        {
+          el.style.posLeft = 0
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyBottom")
+        {
+          el.style.posLeft = 0
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "flyTopLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyTopRight" || animation == "flyTopRightWord")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "flyBottomLeft")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "flyBottomRight" || animation == "flyBottomRightWord")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)+document.body.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)+document.body.offsetHeight
+        }
+        else if(animation == "spiral")
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = document.body.scrollTop-offsetTop(el)-el.offsetHeight
+        }
+        else if(animation == "zoomIn")
+        {
+          el.style.posLeft = 10000
+          el.style.posTop = 0
+        }
+        else if(animation == "zoomOut")
+        {
+          el.style.posLeft = 10000
+          el.style.posTop = 0
+        }
+        else
+        {
+          el.style.posLeft = 10000-offsetLeft(el)-el.offsetWidth
+          el.style.posTop = 0
+        }
+        el.initLeft = el.style.posLeft
+        el.initTop = el.style.posTop
+        animateElements[i++] = el
+      }
+    }
+    window.setTimeout("animate();", speed)
+  }
+  function offsetLeft(el)
+  {
+    x = el.offsetLeft
+    for (e = el.offsetParent; e; e = e.offsetParent)
+      x += e.offsetLeft;
+    return x
+  } 
+  function offsetTop(el)
+  {
+    y = el.offsetTop
+    for (e = el.offsetParent; e; e = e.offsetParent)
+      y += e.offsetTop;
+    return y
+  } 
+  function startWord(ih, i)
+  {
+    for(tag = false; i < ih.length; i++)
+    {
+      c = ih.charAt(i)
+      if(c == '<')
+        tag = true
+      if(!tag)
+        return i
+      if(c == '>')
+        tag = false
+    }
+    return -1
+  }
+  function endWord(ih, i)
+  {
+    nonSpace = false
+    space = false
+    while(i < ih.length)
+    {
+      c = ih.charAt(i)
+      if(c != ' ')
+        nonSpace = true
+      if(nonSpace && c == ' ')
+        space = true
+      if(c == '<')
+        return i
+      if(space && c != ' ')
+        return i
+      i++
+    }
+    return -1
+  }
+  function outWord(ih, i1, i2, dyn, anim)
+  {
+    if(dyn)
+      outString += "<SPAN " + dynamicanimAttr + "=\"" + anim + "\" style=\"position: relative; left: 10000;\">"
+    outString += ih.substring(i1, i2)
+    if(dyn)
+      outString += "</SPAN>"
+  }
+  function animate()
+  {
+    el = animateElements[currentElement]
+    animation = el.getAttribute(dynamicanimAttr, false)
+    step++
+    if(animation == "spiral")
+    {
+      steps = stepsSpiral
+      v = step/steps
+      rf = 1.0 - v
+      t = v * 2.0*Math.PI
+      rx = Math.max(Math.abs(el.initLeft), 200)
+      ry = Math.max(Math.abs(el.initTop),  200)
+      el.style.posLeft = Math.ceil(-rf*Math.cos(t)*rx)
+      el.style.posTop  = Math.ceil(-rf*Math.sin(t)*ry)
+    }
+    else if(animation == "zoomIn")
+    {
+      steps = stepsZoom
+      el.style.fontSize = Math.ceil(50+50*step/steps) + "%"
+      el.style.posLeft = 0
+    }
+    else if(animation == "zoomOut")
+    {
+      steps = stepsZoom
+      el.style.fontSize = Math.ceil(100+200*(steps-step)/steps) + "%"
+      el.style.posLeft = 0
+    }
+    else
+    {
+      steps = stepsFly
+      if(animation == "dropWord" || animation == "flyTopRightWord" || animation == "flyBottomRightWord")
+        steps = stepsWord
+      dl = el.initLeft / steps
+      dt = el.initTop  / steps
+      el.style.posLeft = el.style.posLeft - dl
+      el.style.posTop = el.style.posTop - dt
+    }
+    if (step >= steps) 
+    {
+      el.style.posLeft = 0
+      el.style.posTop = 0
+      currentElement++
+      step = 0
+    }
+    if(currentElement < animateElements.length)
+      window.setTimeout("animate();", speed)
+  }
+//-->
+</script></head>
+
+<body bgcolor="#414141" link="#FF8040" onload="dynAnimation()" vlink="#9EBBE2">
+<div align="center"><center>
+
+<table border="0" cellpadding="0" cellspacing="0" width="980" align="right" height="14">
+  <tr>
+    <td align="center" valign="middle" width="9" height="1"></td>
+    <td align="center" valign="middle" width="70" height="1"><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>P</strong></font><p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>E</strong></font></p>
+    <p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>R</strong></font></p>
+    <p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>S</strong></font></p>
+    <p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>P</strong></font></p>
+    <p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>O</strong></font></p>
+    <p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>L</strong></font></p>
+    <p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>I</strong></font></p>
+    <p><font face="Gill Sans MT" size="6" color="#C0C0C0"><strong>S </strong></font></td>
+    <td align="center" valign="middle" width="41" height="1"><p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>P</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>R</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>O</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>D</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>U</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>C</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>T</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>I</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>O</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>N</strong></font></p>
+    <p align="center"><font face="Gill Sans MT" color="#C0C0C0" size="4"><strong>S </strong></font></td>
+    <td align="center" valign="middle" width="140" height="1">&nbsp;<p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</td>
+    <td align="center" valign="middle" width="38" height="1"></td>
+    <td width="669" height="1" valign="middle" align="center"><p align="left"><font face="Gill Sans MT" size="6" color="#C0C0C0"><u><strong>Our Films
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></u></font></p>
+    <p align="left" style="margin-top: 0px; margin-bottom: 0px"><font face="Gill Sans MT" color="#C0C0C0" size="4"><em><strong><a href="../scent_of_harvest_updated_welcome.htm">THE
+    SCENT OF HARVEST</a> (this film is in post-production)</strong></em></font></p>
+    <p align="left"><font face="Gill Sans MT" size="2" color="#EFF59E">Natasha is a successful
+    young acupuncturist.&nbsp; She runs her own clinic and is loved by her patients.&nbsp; But
+    her personal life is lonely and empty, a fact that becomes painfully clear when her
+    boyfriend coldly rejects her.&nbsp; Reeling from the pain and driving through tears, she
+    collides with a large truck.&nbsp; This collision begins an unexpected friendship that
+    opens her eyes to a part of life she has been missing.</font></p>
+    <p align="left"><font face="Gill Sans MT" size="2" color="#EFF59E">This is a high quality
+    independent feature film concerning solitude among America's younger generations. &nbsp;
+    The film blends the humor of different cultural perspectives on human relations with the
+    universality of solitude and the need for family and friends.&nbsp; The result is a moving
+    tale of a lonely young professional woman who is befriended by an elderly foreign man.</font></p>
+    <p align="left" dynamicanimation="flyTop" style="position: relative !important; left: 10000 !important"><a href="../scent_of_harvest_updated_welcome.htm"><font face="Gill Sans MT" size="2" color="#C0C0C0"><blink>Link here to <em>The Scent of Harvest'</em>s Official Website</blink></font></a></p>
+    <p align="left" style="margin-top: 0px; margin-bottom: 0px">&nbsp;</p>
+    <p align="left" style="margin-top: 0px; margin-bottom: 0px">&nbsp;</p>
+    <p align="left" style="margin-top: 0px; margin-bottom: 0px"><font face="Gill Sans MT" color="#C0C0C0" size="4"><em><strong>TUESDAY (this film is in pre-production)</strong></em></font></p>
+    <p align="left"><font face="Gill Sans MT" size="2" color="#EFF59E">A businessman briefly
+    steps out of his car, and a couple moments later finds the car speeding away:&nbsp; it has
+    been stolen.</font></p>
+    <p align="left"><font face="Gill Sans MT" size="2" color="#EFF59E">As police chase the
+    stolen car, the story within it unfolds:&nbsp; a father is urgently trying to take his
+    child to the hospital.&nbsp; The child has been gravely injured and will soon die if not
+    attended to immediately.&nbsp; This father, who realizes that no other form of
+    transportation will help his daughter arrive at the Emergency Department on time, resorts
+    to stealing the car in a desperate attempt to save her life.</font></p>
+    <p align="center">&nbsp;</p>
+    <p align="center"><a href="filmmakers.htm"><font face="Gill Sans MT" color="#008080"><small>Our
+    Filmmakers </small></font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font face="Gill Sans MT" color="#008080"><small><a href="films.htm">Our Films</a> </small></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <font face="Gill Sans MT" color="#008080"><small><a href="../Old%20Web/perspoliscontact.html">Contact
+    Us</a> </small></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.perspolisproductions.com"><font face="Gill Sans MT" color="#008080"><small>Home</small></font></a></td>
+    <td align="center" valign="middle" width="40" height="174"></td>
+    <td width="173" height="1" valign="middle" align="center"></td>
+  </tr>
+</table>
+</center></div>
+</body>
+</html>

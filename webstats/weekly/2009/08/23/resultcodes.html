@@ -1,0 +1,60 @@
+<!-- This macro file writes the resultcodes report. -->
+
+
+
+<!-- Set descriptions for all known result codes. These are
+	actually used in the table only if at least one
+	access appears with a particular result code. If you
+	prefer to always show an entry for each value, you
+	can rewrite this report using the macros
+	resultcodes-200, resultcodes-201, etc. to access
+	the number of accesses with each result code. -->
+
+
+
+<!-- Now we write the actual page. -->
+
+<html>
+<head><title>Week of 8/23/2009 to 8/29/2009: HTTP Result Codes</title></head>
+<body bgcolor="#FFFFFF">
+<h2>Week of 8/23/2009 to 8/29/2009: HTTP Result Codes</h2>
+<!-- Set the format for an individual row -->
+
+<!-- Now write the actual report table -->
+<table border="1">
+	<tr>
+	<th>Code</th>
+	<th>Description</th>
+	<th>Accesses</th>
+	<th>%</th>
+	</tr>
+<!-- Insert the actual rows -->
+<tr>
+	<td>200</td>
+	<td>OK</td>
+	<td align="right">157</td>
+	<td align="right">44.35</td>
+</tr>
+<tr>
+	<td>304</td>
+	<td>Not Modified</td>
+	<td align="right">19</td>
+	<td align="right">5.37</td>
+</tr>
+<tr>
+	<td>400</td>
+	<td>Bad Request</td>
+	<td align="right">3</td>
+	<td align="right">0.85</td>
+</tr>
+<tr>
+	<td>404</td>
+	<td>Not Found</td>
+	<td align="right">175</td>
+	<td align="right">49.44</td>
+</tr>
+
+</table>
+</body>
+</html>
+

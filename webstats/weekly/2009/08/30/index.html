@@ -1,0 +1,52 @@
+
+<!-- Standard Epoch Report Formatting Macros -->
+<!-- 
+	"What's an epoch?"
+
+	An epoch is an individual day, week, or month, etc., depending
+	on the reporting frequency you have set in your configuration
+	file. This macro file formats the report for a single epoch. 
+
+	This macro file is also used for summary reports, and for
+	reports generated from separate referrer log and user 
+	agent log files. 
+-->
+
+<!-- Include the prologue first to get
+	standard macros like date-format. -->
+
+<!-- Standard macros used by many reporting macro sets -->
+
+
+
+
+<!--	Here we write a fairly ordinary-looking HTML page,
+	inserting the macros for the components of the
+	epoch report where we want to see them. 
+	We also define important formatting macros
+	before we use them, or use other macros that
+	rely on them. -->
+
+<!-- epoch-range is used as the title and header. Only one of
+	these variations will be used. -->	
+
+
+<!-- Frameset page -->
+<html>
+<head><title>Week of 8/30/2009 to 9/5/2009</title></head>
+<frameset cols="75%,*">
+<frame src="exec.html" name="content">
+<frame src="nav.html" name="navigation">
+<noframes>
+The report macro set currently in use requires frames.
+If you prefer a browser that does not support frames,
+you may wish to modify the Wusage reporting macros.
+<hr>
+<em>Produced by <a href="http://www.boutell.com/wusage/">Wusage 7.0</a></em>
+</noframes>
+</frameset>
+</html>
+
+<!-- Content frame in a separate file -->
+
+

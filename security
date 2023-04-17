@@ -1,0 +1,16 @@
+AuthUserFile /home/10/12/2901210/www/.htpasswd
+AuthGroupFile /home/10/12/2901210/www/.htgroup
+AuthName "Site Studio"
+AuthType Basic
+
+<FILES .htpasswd>
+deny from all
+</FILES>
+
+<FILES .htgroup>
+deny from all
+</FILES>
+
+
+
+

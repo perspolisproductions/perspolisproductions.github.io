@@ -1,0 +1,62 @@
+<!-- This history "report" is typically empty, because each
+	graph gets its own page, and the individual epoch reports
+	provide buttons to jump to the graph pages. However, we chose
+	to accomplish this through macros in order to give you the
+	option of changing the behavior. -->
+
+<!-- Include the prologue first to get
+	standard macros like date-format. -->
+
+<!-- Standard macros used by many reporting macro sets -->
+
+
+
+
+<!-- 1. Formatting Macros -->
+
+<!-- The history report can consist of several table/chart pairs
+	for separate totalsgroups. -->
+	
+<!-- history-table-format wraps around the history chart, creating a
+	web page with the chart, the chart labels, and the rows of actual data
+	at appropriate points. Note the use of openfile to put
+	each graph in a separate file. -->
+
+
+<!-- Labels a single item in a history chart. -->
+
+
+<!-- Formats a single row of the history table. -->
+
+
+<!-- This macro describes a range of dates. -->
+
+
+<!-- 2. Page Layout
+
+	Here we write a fairly ordinary-looking HTML page,
+	inserting the macros for the components of the
+	history report where we want to see them. -->
+
+<!-- Insert the history tables. This built-in macro calls
+	history-table-format as many times as necessary
+	for distinct totalsgroups. -->
+<html>
+<head>
+<title>Placeholder</title>
+<body bgcolor="#FFFFFF">
+This particular macro set does not create a separate index for
+each frequency setting. Navigation is accomplished through
+the <a href="../index.html">calendar of reports</a>. This page exists
+as a placeholder for users who wish to design their report
+macros differently. 
+<p>
+
+<hr>
+<em>Produced by 
+	<a href="http://www.boutell.com/wusage/">Wusage 7.0</a></em>
+</body>
+</html>
+
+
+
